@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -18,7 +19,7 @@
 </head>
 <body>
   <h1>账号管理</h1>
-  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
+  <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
   <p><a href="${ctx}/users/new">新增账号</a></p>
   <table>
     <thead>
@@ -29,20 +30,20 @@
     <tbody>
       <c:forEach var="u" items="${users}">
         <tr>
-          <td>${u.username}</td>
-          <td>${u.displayName}</td>
-          <td>${u.role.name()}</td>
+          <td><c:out value="${u.username}"/></td>
+          <td><c:out value="${u.displayName}"/></td>
+          <td><c:out value="${u.role.name()}"/></td>
           <td>
             <c:choose>
-              <c:when test="${u.employeeId != null}">${employeeNames[u.employeeId]}</c:when>
+              <c:when test="${u.employeeId != null}"><c:out value="${employeeNames[u.employeeId]}"/></c:when>
               <c:otherwise>未关联</c:otherwise>
             </c:choose>
           </td>
-          <td>${u.enabled ? '启用' : '停用'}</td>
+          <td><c:out value="${u.enabled ? '启用' : '停用'}"/></td>
           <td>
             <a href="${ctx}/users/${u.id}/edit">编辑</a>
             <form class="inline" action="${ctx}/users/${u.id}/status" method="post">
-              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+              <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
               <input type="hidden" name="enabled" value="${u.enabled ? 'false' : 'true'}">
               <button type="submit">${u.enabled ? '停用' : '启用'}</button>
             </form>

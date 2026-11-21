@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -18,7 +19,7 @@
 </head>
 <body>
   <h1>请假管理</h1>
-  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
+  <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
   <c:if test="${canSubmit}"><p><a href="${ctx}/leave/new">提交请假</a></p></c:if>
 
   <table>
@@ -31,34 +32,34 @@
     <tbody>
       <c:forEach var="leave" items="${requests}">
         <tr>
-          <td>${leave.employeeNo}</td>
-          <td>${leave.employeeName}</td>
+          <td><c:out value="${leave.employeeNo}"/></td>
+          <td><c:out value="${leave.employeeName}"/></td>
           <td>
-            ${leave.leaveType == 'ANNUAL' ? '年假'
+            <c:out value="${leave.leaveType == 'ANNUAL' ? '年假'
               : leave.leaveType == 'SICK' ? '病假'
               : leave.leaveType == 'PERSONAL' ? '事假'
-              : leave.leaveType == 'OTHER' ? '其他' : leave.leaveType}
+              : leave.leaveType == 'OTHER' ? '其他' : leave.leaveType}"/>
           </td>
-          <td>${leave.startDate}</td>
-          <td>${leave.endDate}</td>
-          <td>${leave.reason}</td>
+          <td><c:out value="${leave.startDate}"/></td>
+          <td><c:out value="${leave.endDate}"/></td>
+          <td><c:out value="${leave.reason}"/></td>
           <td>
-            ${leave.status.name() == 'PENDING' ? '待审批'
+            <c:out value="${leave.status.name() == 'PENDING' ? '待审批'
               : leave.status.name() == 'APPROVED' ? '已通过'
-              : leave.status.name() == 'REJECTED' ? '已驳回' : leave.status.name()}
+              : leave.status.name() == 'REJECTED' ? '已驳回' : leave.status.name()}"/>
           </td>
-          <td>${empty leave.approverName ? '' : leave.approverName}</td>
-          <td>${empty leave.approverComment ? '' : leave.approverComment}</td>
+          <td><c:out value="${leave.approverName}"/></td>
+          <td><c:out value="${leave.approverComment}"/></td>
           <td>
             <c:if test="${approver and leave.status.name() == 'PENDING'}">
               <form action="${ctx}/leave/${leave.id}/approval" method="post" style="display:inline">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
                 <input type="hidden" name="approved" value="true">
                 <input type="hidden" name="comment" value="同意">
                 <button type="submit">通过</button>
               </form>
               <form action="${ctx}/leave/${leave.id}/approval" method="post" style="display:inline">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
                 <input type="hidden" name="approved" value="false">
                 <input type="text" name="comment" placeholder="驳回意见">
                 <button type="submit">驳回</button>

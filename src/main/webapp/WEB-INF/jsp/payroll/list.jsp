@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -19,17 +20,17 @@
 </head>
 <body>
   <h1>工资管理</h1>
-  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
-  <c:if test="${not empty message}"><p class="form-success">${message}</p></c:if>
+  <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
+  <c:if test="${not empty message}"><p class="form-success"><c:out value="${message}"/></p></c:if>
 
   <form action="${ctx}/payroll" method="get" style="display:inline">
     <label for="payMonth">工资月份</label>
-    <input id="payMonth" type="month" name="payMonth" value="${payMonth}">
+    <input id="payMonth" type="month" name="payMonth" value="${fn:escapeXml(payMonth)}">
     <button type="submit">查询</button>
   </form>
   <form action="${ctx}/payroll/generate" method="post" style="display:inline; margin-left:12px">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-    <input type="hidden" name="payMonth" value="${payMonth}">
+    <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
+    <input type="hidden" name="payMonth" value="${fn:escapeXml(payMonth)}">
     <button type="submit">生成当月工资单</button>
   </form>
 
@@ -44,22 +45,22 @@
     <tbody>
       <c:forEach var="record" items="${records}">
         <tr>
-          <td>${record.employeeNo}</td>
-          <td>${record.employeeName}</td>
-          <td>${record.payMonth}</td>
-          <td>${record.baseSalary}</td>
-          <td>${record.bonus}</td>
-          <td>${record.allowance}</td>
-          <td>${record.deduction}</td>
-          <td>${record.socialSecurity}</td>
-          <td>${record.netSalary}</td>
-          <td>${record.status.name() == 'DRAFT' ? '草稿' : '已发放'}</td>
-          <td>${empty record.paidAt ? '' : record.paidAt}</td>
+          <td><c:out value="${record.employeeNo}"/></td>
+          <td><c:out value="${record.employeeName}"/></td>
+          <td><c:out value="${record.payMonth}"/></td>
+          <td><c:out value="${record.baseSalary}"/></td>
+          <td><c:out value="${record.bonus}"/></td>
+          <td><c:out value="${record.allowance}"/></td>
+          <td><c:out value="${record.deduction}"/></td>
+          <td><c:out value="${record.socialSecurity}"/></td>
+          <td><c:out value="${record.netSalary}"/></td>
+          <td><c:out value="${record.status.name() == 'DRAFT' ? '草稿' : '已发放'}"/></td>
+          <td><c:out value="${record.paidAt}"/></td>
           <td>
             <c:if test="${record.status.name() == 'DRAFT'}">
               <a href="${ctx}/payroll/${record.id}/edit">编辑</a>
               <form action="${ctx}/payroll/${record.id}/paid" method="post" style="display:inline">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
                 <button type="submit">确认发放</button>
               </form>
             </c:if>

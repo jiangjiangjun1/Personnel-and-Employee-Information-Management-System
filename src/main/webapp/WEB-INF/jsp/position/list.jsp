@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -18,7 +19,7 @@
 </head>
 <body>
   <h1>岗位管理</h1>
-  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
+  <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
   <p><a href="${ctx}/positions/new">新增岗位</a></p>
   <table>
     <thead>
@@ -27,15 +28,15 @@
     <tbody>
       <c:forEach var="p" items="${positions}">
         <tr>
-          <td>${p.code}</td>
-          <td>${p.name}</td>
-          <td>${p.level}</td>
-          <td>${p.description}</td>
-          <td>${p.status.name() == 'ACTIVE' ? '启用' : '停用'}</td>
+          <td><c:out value="${p.code}"/></td>
+          <td><c:out value="${p.name}"/></td>
+          <td><c:out value="${p.level}"/></td>
+          <td><c:out value="${p.description}"/></td>
+          <td><c:out value="${p.status.name() == 'ACTIVE' ? '启用' : '停用'}"/></td>
           <td class="actions">
             <a href="${ctx}/positions/${p.id}/edit">编辑</a>
             <form action="${ctx}/positions/${p.id}/status" method="post" style="display:inline">
-              <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+              <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
               <input type="hidden" name="status" value="${p.status.name() == 'ACTIVE' ? 'INACTIVE' : 'ACTIVE'}">
               <button type="submit">${p.status.name() == 'ACTIVE' ? '停用' : '启用'}</button>
             </form>

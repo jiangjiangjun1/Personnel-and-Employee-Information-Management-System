@@ -11,7 +11,6 @@ public record AppUser(
 ) {
     public long getId() { return id; }
     public String getUsername() { return username; }
-    public String getPasswordHash() { return passwordHash; }
     public String getDisplayName() { return displayName; }
     public Role getRole() { return role; }
     public boolean isEnabled() { return enabled; }

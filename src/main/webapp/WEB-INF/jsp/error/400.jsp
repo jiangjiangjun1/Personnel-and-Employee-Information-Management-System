@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -10,7 +11,7 @@
 <body class="app-page">
   <main class="app-main" style="margin-left:0">
     <h1>400 请求有误</h1>
-    <p>${empty message ? '提交的数据不正确。' : message}</p>
+    <p><c:out value="${empty message ? '提交的数据不正确。' : message}"/></p>
     <a href="${pageContext.request.contextPath}/dashboard">返回首页</a>
   </main>
 </body>

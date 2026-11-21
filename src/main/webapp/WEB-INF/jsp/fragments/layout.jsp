@@ -1,10 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <header class="topbar">
   <span>人事员工信息管理系统</span>
-  <span>${appUser.displayName}
+  <span><c:out value="${appUser.displayName}"/>
     <form action="${pageContext.request.contextPath}/logout" method="post">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+      <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
       <button type="submit">退出</button>
     </form>
   </span>

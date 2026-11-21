@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,7 +13,7 @@
   <main class="login-card">
     <h1>人事员工信息管理系统</h1>
     <form action="${pageContext.request.contextPath}/login" method="post">
-      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+      <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
       <label for="username">用户名</label>
       <input id="username" name="username" type="text" autocomplete="username" required>
       <label for="password">密码</label>

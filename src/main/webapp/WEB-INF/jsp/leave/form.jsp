@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -16,10 +17,10 @@
 </head>
 <body>
   <h1>提交请假</h1>
-  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
+  <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
 
   <form action="${ctx}/leave" method="post">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
     <label for="leaveType">请假类型</label>
     <select id="leaveType" name="leaveType">
       <option value="ANNUAL" <c:if test="${form.leaveType == 'ANNUAL'}">selected</c:if>>年假</option>
@@ -29,12 +30,12 @@
     </select>
     <label for="startDate">开始日期</label>
     <input id="startDate" type="date" name="startDate"
-           value="${empty startDate ? form.startDate : startDate}" required>
+           value="${fn:escapeXml(empty startDate ? form.startDate : startDate)}" required>
     <label for="endDate">结束日期</label>
     <input id="endDate" type="date" name="endDate"
-           value="${empty endDate ? form.endDate : endDate}" required>
+           value="${fn:escapeXml(empty endDate ? form.endDate : endDate)}" required>
     <label for="reason">请假原因</label>
-    <textarea id="reason" name="reason" required>${form.reason}</textarea>
+    <textarea id="reason" name="reason" required><c:out value="${form.reason}"/></textarea>
     <p><button type="submit">提交</button> <a href="${ctx}/leave">返回</a></p>
   </form>
 </body>

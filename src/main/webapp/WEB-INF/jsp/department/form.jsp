@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -16,7 +17,7 @@
 </head>
 <body>
   <h1>${empty id ? '新增部门' : '编辑部门'}</h1>
-  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
+  <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
   <c:choose>
     <c:when test="${empty id}">
       <c:set var="formAction" value="${ctx}/departments"/>
@@ -25,16 +26,16 @@
       <c:set var="formAction" value="${ctx}/departments/${id}"/>
     </c:otherwise>
   </c:choose>
-  <form action="${formAction}" method="post">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+  <form action="${fn:escapeXml(formAction)}" method="post">
+    <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
     <label for="code">编码</label>
-    <input id="code" name="code" value="${form.code}" required>
+    <input id="code" name="code" value="${fn:escapeXml(form.code)}" required>
     <label for="name">名称</label>
-    <input id="name" name="name" value="${form.name}" required>
+    <input id="name" name="name" value="${fn:escapeXml(form.name)}" required>
     <label for="manager">负责人</label>
-    <input id="manager" name="manager" value="${form.manager}">
+    <input id="manager" name="manager" value="${fn:escapeXml(form.manager)}">
     <label for="phone">联系电话</label>
-    <input id="phone" name="phone" value="${form.phone}">
+    <input id="phone" name="phone" value="${fn:escapeXml(form.phone)}">
     <label for="status">状态</label>
     <select id="status" name="status">
       <option value="ACTIVE" <c:if test="${form.status.name() == 'ACTIVE'}">selected</c:if>>启用</option>

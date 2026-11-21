@@ -16,19 +16,19 @@
     <c:if test="${!employeeView}">
       <section class="stat-grid">
         <div class="stat">
-          <span class="stat-value">${summary.employeeCount}</span>
+          <span class="stat-value"><c:out value="${summary.employeeCount}"/></span>
           <span class="stat-label">员工总数</span>
         </div>
         <div class="stat">
-          <span class="stat-value">${summary.activeEmployeeCount}</span>
+          <span class="stat-value"><c:out value="${summary.activeEmployeeCount}"/></span>
           <span class="stat-label">在职员工</span>
         </div>
         <div class="stat">
-          <span class="stat-value">${summary.departmentCount}</span>
+          <span class="stat-value"><c:out value="${summary.departmentCount}"/></span>
           <span class="stat-label">部门数量</span>
         </div>
         <div class="stat">
-          <span class="stat-value">${summary.pendingLeaveCount}</span>
+          <span class="stat-value"><c:out value="${summary.pendingLeaveCount}"/></span>
           <span class="stat-label">待审批请假</span>
         </div>
       </section>
@@ -44,12 +44,12 @@
           <tbody>
             <c:forEach var="a" items="${recentAttendance}">
               <tr>
-                <td>${a.employeeNo}</td>
-                <td>${a.employeeName}</td>
-                <td>${a.workDate}</td>
-                <td>${a.checkIn}</td>
-                <td>${a.checkOut}</td>
-                <td>${a.status.name()}</td>
+                <td><c:out value="${a.employeeNo}"/></td>
+                <td><c:out value="${a.employeeName}"/></td>
+                <td><c:out value="${a.workDate}"/></td>
+                <td><c:out value="${a.checkIn}"/></td>
+                <td><c:out value="${a.checkOut}"/></td>
+                <td><c:out value="${a.status.name()}"/></td>
               </tr>
             </c:forEach>
           </tbody>
@@ -58,8 +58,8 @@
     </section>
 
     <section class="card">
-      <h2>本月工资汇总（${currentMonth}）</h2>
-      <p>实发合计：<strong>${payrollTotal}</strong></p>
+      <h2>本月工资汇总（<c:out value="${currentMonth}"/>）</h2>
+      <p>实发合计：<strong><c:out value="${payrollTotal}"/></strong></p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -68,10 +68,10 @@
           <tbody>
             <c:forEach var="p" items="${payrollRecords}">
               <tr>
-                <td>${p.employeeNo}</td>
-                <td>${p.employeeName}</td>
-                <td>${p.netSalary}</td>
-                <td>${p.status.name() == 'PAID' ? '已发放' : '草稿'}</td>
+                <td><c:out value="${p.employeeNo}"/></td>
+                <td><c:out value="${p.employeeName}"/></td>
+                <td><c:out value="${p.netSalary}"/></td>
+                <td><c:out value="${p.status.name() == 'PAID' ? '已发放' : '草稿'}"/></td>
               </tr>
             </c:forEach>
           </tbody>

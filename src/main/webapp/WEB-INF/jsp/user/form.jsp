@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -17,7 +18,7 @@
 </head>
 <body>
   <h1>${empty id ? '新增账号' : '编辑账号'}</h1>
-  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
+  <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
 
   <c:choose>
     <c:when test="${empty id}">
@@ -28,16 +29,16 @@
     </c:otherwise>
   </c:choose>
 
-  <form action="${formAction}" method="post">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+  <form action="${fn:escapeXml(formAction)}" method="post">
+    <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
     <label for="username">用户名</label>
-    <input id="username" name="username" value="${form.username}" required>
+    <input id="username" name="username" value="${fn:escapeXml(form.username)}" required>
     <label for="displayName">显示名</label>
-    <input id="displayName" name="displayName" value="${form.displayName}" required>
+    <input id="displayName" name="displayName" value="${fn:escapeXml(form.displayName)}" required>
     <label for="role">角色</label>
     <select id="role" name="role">
       <c:forEach var="r" items="${roles}">
-        <option value="${r.name()}" <c:if test="${form.role == r}">selected</c:if>>${r.name()}</option>
+        <option value="${r.name()}" <c:if test="${form.role == r}">selected</c:if>><c:out value="${r.name()}"/></option>
       </c:forEach>
     </select>
     <label for="employeeId">关联员工</label>
@@ -45,7 +46,7 @@
       <option value="">不绑定员工</option>
       <c:forEach var="e" items="${employees}">
         <option value="${e.id}" <c:if test="${form.employeeId == e.id}">selected</c:if>>
-          ${e.employeeNo} - ${e.name}
+          <c:out value="${e.employeeNo}"/> - <c:out value="${e.name}"/>
         </option>
       </c:forEach>
     </select>
