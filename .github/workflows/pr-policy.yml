@@ -1,0 +1,22 @@
+name: PR Branch Policy
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  enforce-main-target:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require feature branches to target main
+        if: startsWith(github.head_ref, 'feat/') && github.base_ref != 'main'
+        run: |
+          echo "Feature branches must target main; current base is '${GITHUB_BASE_REF}'." >&2
+          exit 1
+
+      - name: Validate target branch
+        if: ${{ !(startsWith(github.head_ref, 'feat/') && github.base_ref != 'main') }}
+        run: echo "PR target policy passed."
