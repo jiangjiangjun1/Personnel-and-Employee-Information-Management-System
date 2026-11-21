@@ -2,6 +2,7 @@ package com.fzgs.personnel.controller;
 
 import com.fzgs.personnel.model.AppUser;
 import com.fzgs.personnel.model.PayrollRecord;
+import com.fzgs.personnel.model.Role;
 import com.fzgs.personnel.repository.UserRepository;
 import com.fzgs.personnel.service.AttendanceService;
 import com.fzgs.personnel.service.DashboardService;
@@ -39,15 +40,30 @@ public class DashboardController {
                 .orElseThrow(() -> new IllegalStateException("当前用户不存在"));
 
         String month = YearMonth.now().toString();
-        List<PayrollRecord> payroll = payrollService.findByMonth(month);
+        boolean employeeView = user.role() == Role.EMPLOYEE;
+        List<PayrollRecord> payroll;
+        List<com.fzgs.personnel.model.AttendanceRecord> recentAttendance;
+        if (employeeView && user.employeeId() != null) {
+            payroll = payrollService.findByEmployeeAndMonth(user.employeeId(), month);
+            recentAttendance = attendanceService.findPage(
+                    user.employeeId(), null, null, 1, 5).items();
+        } else if (employeeView) {
+            payroll = List.of();
+            recentAttendance = List.of();
+        } else {
+            payroll = payrollService.findByMonth(month);
+            recentAttendance = attendanceService.findPage(null, null, null, 1, 5).items();
+        }
         BigDecimal payrollTotal = payroll.stream()
                 .map(PayrollRecord::netSalary)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         model.addAttribute("appUser", user);
-        model.addAttribute("summary", dashboardService.summary());
-        model.addAttribute("recentAttendance",
-                attendanceService.findPage(null, null, null, 1, 5).items());
+        model.addAttribute("employeeView", employeeView);
+        if (!employeeView) {
+            model.addAttribute("summary", dashboardService.summary());
+        }
+        model.addAttribute("recentAttendance", recentAttendance);
         model.addAttribute("currentMonth", month);
         model.addAttribute("payrollRecords", payroll);
         model.addAttribute("payrollTotal", payrollTotal);

@@ -13,24 +13,26 @@
   <main class="app-main">
     <h1 class="page-title">工作台</h1>
 
-    <section class="stat-grid">
-      <div class="stat">
-        <span class="stat-value">${summary.employeeCount}</span>
-        <span class="stat-label">员工总数</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">${summary.activeEmployeeCount}</span>
-        <span class="stat-label">在职员工</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">${summary.departmentCount}</span>
-        <span class="stat-label">部门数量</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">${summary.pendingLeaveCount}</span>
-        <span class="stat-label">待审批请假</span>
-      </div>
-    </section>
+    <c:if test="${!employeeView}">
+      <section class="stat-grid">
+        <div class="stat">
+          <span class="stat-value">${summary.employeeCount}</span>
+          <span class="stat-label">员工总数</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">${summary.activeEmployeeCount}</span>
+          <span class="stat-label">在职员工</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">${summary.departmentCount}</span>
+          <span class="stat-label">部门数量</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">${summary.pendingLeaveCount}</span>
+          <span class="stat-label">待审批请假</span>
+        </div>
+      </section>
+    </c:if>
 
     <section class="card">
       <h2>最近考勤</h2>

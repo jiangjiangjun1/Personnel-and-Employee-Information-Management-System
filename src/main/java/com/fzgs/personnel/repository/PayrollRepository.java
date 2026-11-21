@@ -44,6 +44,15 @@ public class PayrollRepository {
         );
     }
 
+    public List<PayrollRecord> findByEmployeeAndMonth(long employeeId, String payMonth) {
+        return jdbc.query(
+                SELECT_PAYROLL + " where p.employee_id = ? and p.pay_month = ? order by e.employee_no",
+                (rs, rowNum) -> map(rs),
+                employeeId,
+                payMonth
+        );
+    }
+
     public Optional<PayrollRecord> findById(long id) {
         return jdbc.query(
                         SELECT_PAYROLL + " where p.id = ?",

@@ -35,6 +35,10 @@ public class PayrollService {
         return payrollRepository.findByMonth(payMonth);
     }
 
+    public List<PayrollRecord> findByEmployeeAndMonth(long employeeId, String payMonth) {
+        return payrollRepository.findByEmployeeAndMonth(employeeId, payMonth);
+    }
+
     public Optional<PayrollRecord> findById(long id) {
         return payrollRepository.findById(id);
     }
