@@ -84,6 +84,13 @@ public class EmployeeRepository {
                 .findFirst();
     }
 
+    public List<Employee> findActiveEmployees() {
+        return jdbc.query(
+                SELECT_EMPLOYEE + " where e.status = 'ACTIVE' order by e.employee_no",
+                (rs, rowNum) -> map(rs)
+        );
+    }
+
     public boolean existsByEmployeeNo(String employeeNo, long excludedId) {
         Integer count = jdbc.queryForObject(
                 "select count(*) from employees where employee_no = ? and id <> ?",
