@@ -3,11 +3,15 @@ package com.fzgs.personnel.integration;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.transaction.annotation.Transactional;
 import com.fzgs.personnel.model.AttendanceRecord;
 import com.fzgs.personnel.model.PayrollRecord;
 
+import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +27,9 @@ class DashboardPageTest extends AbstractIntegrationTest {
 
     @Autowired
     private MockMvc mvc;
+
+    @Autowired
+    private JdbcTemplate jdbc;
 
     @Test
     void adminCanRenderDashboard() throws Exception {
@@ -41,7 +48,31 @@ class DashboardPageTest extends AbstractIntegrationTest {
     }
 
     @Test
+    @Transactional
     void employeeDashboardShowsOnlyOwnPayrollAndAttendance() throws Exception {
+        String month = YearMonth.now().toString();
+        LocalDate workDate = LocalDate.now();
+        jdbc.update("delete from payroll_records where pay_month = ?", month);
+        jdbc.update("delete from attendance_records");
+        jdbc.update("""
+                insert into payroll_records(employee_id, pay_month, base_salary, bonus,
+                    allowance, deduction, social_security, net_salary, status, created_by)
+                values (3, ?, 8000, 0, 0, 0, 0, 8000, 'DRAFT', 2)
+                """, month);
+        jdbc.update("""
+                insert into payroll_records(employee_id, pay_month, base_salary, bonus,
+                    allowance, deduction, social_security, net_salary, status, created_by)
+                values (4, ?, 7000, 0, 0, 0, 0, 7000, 'DRAFT', 2)
+                """, month);
+        jdbc.update("""
+                insert into attendance_records(employee_id, work_date, check_in, check_out, status)
+                values (3, ?, '09:00:00', '18:00:00', 'NORMAL')
+                """, workDate);
+        jdbc.update("""
+                insert into attendance_records(employee_id, work_date, check_in, check_out, status)
+                values (4, ?, '09:00:00', '18:00:00', 'NORMAL')
+                """, workDate);
+
         MvcResult result = mvc.perform(get("/dashboard")
                         .with(user("employee").roles("EMPLOYEE")))
                 .andExpect(status().isOk())
