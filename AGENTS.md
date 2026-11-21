@@ -1,70 +1,57 @@
 # Repository Guidelines
 
-## Project Status
-
-This repository is at its initial baseline: `main` has no commits, and there are
-currently no application sources, tests, build files, or assets. Inspect the
-worktree before making assumptions about the technology stack. Update this guide
-when a toolchain is introduced.
-
 ## Project Structure & Module Organization
 
-At present, `AGENTS.md` is the only project file; `.git/` contains repository
-metadata. When adding code, establish a clear top-level layout appropriate to the
-chosen ecosystem, for example:
+- `src/main/java/com/fzgs/personnel/`: controllers, services, repositories, models, DTOs, and shared infrastructure.
+- `src/main/resources/db/migration/`: Flyway schema and demo data.
+- `src/main/webapp/WEB-INF/jsp/`: JSP views and layout fragments.
+- `src/test/java/`: JUnit service tests and real-MySQL integration tests.
+- `docs/superpowers/`: approved design and implementation plan.
 
-- `src/` for application source code.
-- `tests/` for automated tests.
-- `assets/` or `public/` for static files.
-- `docs/` for design and operational documentation.
-
-Keep generated output such as `build/`, `dist/`, `target/`, and coverage reports
-out of version control.
+Keep generated output such as `target/` and local CodeGraph indexes out of version control.
 
 ## Build, Test, and Development Commands
 
-No build, dependency, lint, or test commands are configured yet. Do not introduce
-unverified commands in documentation. Once scaffolding exists, record the exact
-installation, development, build, lint, and test commands here and in the README.
-
-Useful repository checks that work today:
-
 ```sh
-git status --short   # Review pending changes.
-git diff --check     # Detect whitespace errors.
+docker compose up -d mysql  # Start the dedicated MySQL 8 container on port 3307.
+mvn spring-boot:run        # Run the JSP application on port 8080.
+mvn test                   # Run unit and integration tests.
+mvn -B verify              # Run the complete quality gate used by CI.
+mvn clean package          # Build target/personnel-management.war.
 ```
 
 ## Coding Style & Naming Conventions
 
-No language, formatter, or linter has been selected. Adopt one formatter per
-language, commit its configuration, and format changed files before submitting.
-Avoid unrelated style-only changes.
-
-Use lowercase, descriptive directory names and ecosystem-standard identifiers.
-Unless the selected language dictates otherwise, use `PascalCase` for types,
-`camelCase` for functions and variables, and short kebab-case file names.
+- Use Java 17 conventions: 4-space indentation, `PascalCase` types, and `camelCase` methods/fields.
+- Keep SQL in repositories, business rules in services, and request/view logic in controllers.
+- Place arrays/collections in plurals; model database statuses with the existing enums.
+- User-visible text is Chinese; code identifiers are English.
+- Use `BigDecimal` for money and never render or log passwords.
 
 ## Testing Guidelines
 
-There is no testing framework or coverage target yet. Add tests with the first
-behavioral code and document the command that runs them. Name tests after the
-behavior under test, following the framework's convention (for example,
-`employee-validation.test.ts` or `EmployeeServiceTest.java`). New behavior and
-bug fixes should include focused regression tests.
+Tests use JUnit 5, MockMvc, and Testcontainers with MySQL 8. Name service tests
+`<Feature>ServiceTest` and page flows `<Feature>FlowTest` or `<Feature>PageTest`.
+Add a focused regression test for every business-rule or security fix. Run
+`mvn -B verify` before handoff.
 
 ## Commit & Pull Request Guidelines
 
-There is no commit history from which to derive a convention. Use Conventional
-Commits, such as `feat: add employee search` or `fix: validate department IDs`.
-Keep each commit focused and imperative.
-
-Pull requests should explain the change and its rationale, list verification
-steps, identify configuration or schema changes, and link relevant issues. Include
-screenshots for visible UI changes. Ensure all configured checks pass before
-requesting review.
+Use Conventional Commits such as `feat: add employee search` or
+`fix: validate department IDs`. Pull requests should summarize behavior,
+verification, migrations/config changes, and include UI screenshots when visible
+pages change. Ensure GitHub Actions is green before requesting review.
 
 ## Security & Configuration
 
-Never commit credentials, personal employee data, or environment-specific
-secrets. Document required variables in an example configuration and use the
-principle of least privilege for data access.
+The `admin`, `hr`, and `employee` accounts use the local-only password `123456`;
+never reuse them outside the course demo. Provide database settings through
+`DB_URL`, `DB_USERNAME`, and `DB_PASSWORD`. Never commit personal employee data,
+production credentials, or stack traces containing secrets.
+
+## CodeGraph
+
+This repository maintains a local CodeGraph index for structural queries. Use it
+for symbol definitions, callers, callees, impact, and focused task context. After
+changing code, run `codegraph sync .`; initialize a fresh checkout with
+`codegraph init -i .`. Do not commit `.codegraph/`.
