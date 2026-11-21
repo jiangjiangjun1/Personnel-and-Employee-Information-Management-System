@@ -135,6 +135,17 @@ public class EmployeeRepository {
         jdbc.update("update employees set status = ? where id = ?", status.name(), id);
     }
 
+    public int updateContact(long id, String phone, String email, String address) {
+        return jdbc.update("""
+                update employees set phone = ?, email = ?, address = ?
+                where id = ?
+                """,
+                nullable(phone),
+                nullable(email),
+                nullable(address),
+                id);
+    }
+
     private void setEmployeeFields(PreparedStatement ps, EmployeeForm form) throws java.sql.SQLException {
         ps.setString(1, form.employeeNo());
         ps.setString(2, form.name());
@@ -194,6 +205,10 @@ public class EmployeeRepository {
         } else {
             ps.setString(index, value);
         }
+    }
+
+    private String nullable(String value) {
+        return value == null || value.isBlank() ? null : value.trim();
     }
 
     private Employee map(java.sql.ResultSet rs) throws java.sql.SQLException {

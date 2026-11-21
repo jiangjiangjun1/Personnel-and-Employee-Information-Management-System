@@ -91,6 +91,20 @@ public class EmployeeService {
         repository.updateStatus(id, status);
     }
 
+    @Transactional
+    public void updateContact(long employeeId, String phone, String email, String address) {
+        if (repository.findById(employeeId).isEmpty()) {
+            throw new BusinessException("员工不存在");
+        }
+        String normalizedEmail = blankToNull(email);
+        if (normalizedEmail != null && !normalizedEmail.matches(
+                "^[\\w.%+-]+@[\\w.-]+\\.[A-Za-z]{2,}$")) {
+            throw new BusinessException("邮箱格式不正确");
+        }
+        repository.updateContact(employeeId, blankToNull(phone),
+                normalizedEmail, blankToNull(address));
+    }
+
     private EmployeeForm normalize(EmployeeForm form) {
         return new EmployeeForm(
                 trim(form.employeeNo()).toUpperCase(),
