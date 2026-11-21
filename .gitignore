@@ -1,0 +1,12 @@
+target/
+.codegraph/
+.cursor/
+
+.idea/
+*.iml
+.vscode/
+
+.env
+.env.local
+*.log
+.DS_Store
