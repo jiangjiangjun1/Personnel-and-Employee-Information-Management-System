@@ -1,6 +1,7 @@
 package com.fzgs.personnel.config;
 
 import com.fzgs.personnel.repository.UserRepository;
+import jakarta.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +35,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers("/login", "/css/**", "/error/**").permitAll()
                         .requestMatchers("/departments/**", "/positions/**", "/users/**").hasRole("ADMIN")
                         .requestMatchers("/employees/**", "/attendance/**", "/payroll/**").hasAnyRole("ADMIN", "HR")

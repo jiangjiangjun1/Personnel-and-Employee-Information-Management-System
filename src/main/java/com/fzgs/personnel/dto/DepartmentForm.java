@@ -9,4 +9,9 @@ public record DepartmentForm(
     String phone,
     RecordStatus status
 ) {
+    public String getCode() { return code; }
+    public String getName() { return name; }
+    public String getManager() { return manager; }
+    public String getPhone() { return phone; }
+    public RecordStatus getStatus() { return status; }
 }

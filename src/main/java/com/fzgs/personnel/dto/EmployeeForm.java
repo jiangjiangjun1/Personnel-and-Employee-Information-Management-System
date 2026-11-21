@@ -25,6 +25,18 @@ public record EmployeeForm(
         @NotNull Long positionId,
         @NotNull EmployeeStatus status
 ) {
+    public String getEmployeeNo() { return employeeNo; }
+    public String getName() { return name; }
+    public String getGender() { return gender; }
+    public LocalDate getBirthDate() { return birthDate; }
+    public String getPhone() { return phone; }
+    public String getEmail() { return email; }
+    public String getAddress() { return address; }
+    public LocalDate getHireDate() { return hireDate; }
+    public BigDecimal getBaseSalary() { return baseSalary; }
+    public Long getDepartmentId() { return departmentId; }
+    public Long getPositionId() { return positionId; }
+    public EmployeeStatus getStatus() { return status; }
 
     public static EmployeeForm from(Employee employee) {
         return new EmployeeForm(

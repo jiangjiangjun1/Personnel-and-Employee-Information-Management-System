@@ -9,4 +9,9 @@ public record PageResult<T>(
         long total,
         int totalPages
 ) {
+    public List<T> getItems() { return items; }
+    public int getPage() { return page; }
+    public int getSize() { return size; }
+    public long getTotal() { return total; }
+    public int getTotalPages() { return totalPages; }
 }

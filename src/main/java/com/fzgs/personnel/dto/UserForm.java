@@ -14,6 +14,12 @@ public record UserForm(
         Long employeeId,
         String password
 ) {
+    public String getUsername() { return username; }
+    public String getDisplayName() { return displayName; }
+    public Role getRole() { return role; }
+    public boolean isEnabled() { return enabled; }
+    public Long getEmployeeId() { return employeeId; }
+    public String getPassword() { return password; }
 
     public static UserForm from(AppUser user) {
         return new UserForm(

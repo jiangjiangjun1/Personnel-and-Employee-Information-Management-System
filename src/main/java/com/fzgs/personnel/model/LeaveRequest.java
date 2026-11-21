@@ -19,4 +19,18 @@ public record LeaveRequest(
         String approverComment,
         LocalDateTime createdAt
 ) {
+    public Long getId() { return id; }
+    public Long getEmployeeId() { return employeeId; }
+    public String getEmployeeNo() { return employeeNo; }
+    public String getEmployeeName() { return employeeName; }
+    public String getLeaveType() { return leaveType; }
+    public LocalDate getStartDate() { return startDate; }
+    public LocalDate getEndDate() { return endDate; }
+    public String getReason() { return reason; }
+    public LeaveStatus getStatus() { return status; }
+    public Long getApproverId() { return approverId; }
+    public String getApproverName() { return approverName; }
+    public LocalDateTime getApprovedAt() { return approvedAt; }
+    public String getApproverComment() { return approverComment; }
+    public LocalDateTime getCreatedAt() { return createdAt; }
 }

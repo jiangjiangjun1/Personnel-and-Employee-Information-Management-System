@@ -9,4 +9,9 @@ public record PositionForm(
     String description,
     RecordStatus status
 ) {
+    public String getCode() { return code; }
+    public String getName() { return name; }
+    public String getLevel() { return level; }
+    public String getDescription() { return description; }
+    public RecordStatus getStatus() { return status; }
 }

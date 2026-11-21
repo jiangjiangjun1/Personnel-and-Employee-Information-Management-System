@@ -8,4 +8,8 @@ public record LeaveForm(
         LocalDate endDate,
         String reason
 ) {
+    public String getLeaveType() { return leaveType; }
+    public LocalDate getStartDate() { return startDate; }
+    public LocalDate getEndDate() { return endDate; }
+    public String getReason() { return reason; }
 }

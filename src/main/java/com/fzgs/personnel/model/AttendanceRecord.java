@@ -14,4 +14,13 @@ public record AttendanceRecord(
         AttendanceStatus status,
         String remark
 ) {
+    public Long getId() { return id; }
+    public Long getEmployeeId() { return employeeId; }
+    public String getEmployeeNo() { return employeeNo; }
+    public String getEmployeeName() { return employeeName; }
+    public LocalDate getWorkDate() { return workDate; }
+    public LocalTime getCheckIn() { return checkIn; }
+    public LocalTime getCheckOut() { return checkOut; }
+    public AttendanceStatus getStatus() { return status; }
+    public String getRemark() { return remark; }
 }

@@ -20,4 +20,19 @@ public record Employee(
         Long positionId,
         String positionName
 ) {
+    public Long getId() { return id; }
+    public String getEmployeeNo() { return employeeNo; }
+    public String getName() { return name; }
+    public String getGender() { return gender; }
+    public LocalDate getBirthDate() { return birthDate; }
+    public String getPhone() { return phone; }
+    public String getEmail() { return email; }
+    public String getAddress() { return address; }
+    public LocalDate getHireDate() { return hireDate; }
+    public BigDecimal getBaseSalary() { return baseSalary; }
+    public EmployeeStatus getStatus() { return status; }
+    public Long getDepartmentId() { return departmentId; }
+    public String getDepartmentName() { return departmentName; }
+    public Long getPositionId() { return positionId; }
+    public String getPositionName() { return positionName; }
 }
