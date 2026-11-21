@@ -31,6 +31,7 @@ public class DepartmentService {
     @Transactional
     public void create(DepartmentForm form) {
         DepartmentForm normalized = normalize(form);
+        validateRequired(normalized);
         if (repository.existsByCode(normalized.code(), 0L)) {
             throw new BusinessException("部门编码已存在");
         }
@@ -43,6 +44,7 @@ public class DepartmentService {
             throw new BusinessException("部门不存在");
         }
         DepartmentForm normalized = normalize(form);
+        validateRequired(normalized);
         if (repository.existsByCode(normalized.code(), id)) {
             throw new BusinessException("部门编码已存在");
         }
@@ -69,5 +71,14 @@ public class DepartmentService {
 
     private String trim(String value) {
         return value == null ? "" : value.trim();
+    }
+
+    private void validateRequired(DepartmentForm form) {
+        if (form.code().isBlank()) {
+            throw new BusinessException("部门编码不能为空");
+        }
+        if (form.name().isBlank()) {
+            throw new BusinessException("部门名称不能为空");
+        }
     }
 }

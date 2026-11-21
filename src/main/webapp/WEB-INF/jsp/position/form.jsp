@@ -17,7 +17,15 @@
 <body>
   <h1>${empty id ? '新增岗位' : '编辑岗位'}</h1>
   <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
-  <form action="${empty id ? ctx.concat('/positions') : ctx.concat('/positions/').concat(id)}" method="post">
+  <c:choose>
+    <c:when test="${empty id}">
+      <c:set var="formAction" value="${ctx}/positions"/>
+    </c:when>
+    <c:otherwise>
+      <c:set var="formAction" value="${ctx}/positions/${id}"/>
+    </c:otherwise>
+  </c:choose>
+  <form action="${formAction}" method="post">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <label for="code">编码</label>
     <input id="code" name="code" value="${form.code}" required>

@@ -4,8 +4,12 @@ import com.fzgs.personnel.dto.PositionForm;
 import com.fzgs.personnel.model.Position;
 import com.fzgs.personnel.model.RecordStatus;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,15 +50,21 @@ public class PositionRepository {
     }
 
     public long create(PositionForm form) {
-        jdbc.update(
-                "insert into positions(code, name, level, description, status) values (?, ?, ?, ?, ?)",
-                form.code(),
-                form.name(),
-                form.level(),
-                form.description(),
-                form.status().name()
-        );
-        return 0L;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        jdbc.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                    "insert into positions(code, name, level, description, status) values (?, ?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            ps.setString(1, form.code());
+            ps.setString(2, form.name());
+            ps.setString(3, form.level());
+            ps.setString(4, form.description());
+            ps.setString(5, form.status().name());
+            return ps;
+        }, keyHolder);
+        Number key = keyHolder.getKey();
+        return key == null ? 0L : key.longValue();
     }
 
     public void update(long id, PositionForm form) {

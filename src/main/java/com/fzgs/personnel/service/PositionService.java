@@ -31,6 +31,7 @@ public class PositionService {
     @Transactional
     public void create(PositionForm form) {
         PositionForm normalized = normalize(form);
+        validateRequired(normalized);
         if (repository.existsByCode(normalized.code(), 0L)) {
             throw new BusinessException("岗位编码已存在");
         }
@@ -43,6 +44,7 @@ public class PositionService {
             throw new BusinessException("岗位不存在");
         }
         PositionForm normalized = normalize(form);
+        validateRequired(normalized);
         if (repository.existsByCode(normalized.code(), id)) {
             throw new BusinessException("岗位编码已存在");
         }
@@ -69,5 +71,14 @@ public class PositionService {
 
     private String trim(String value) {
         return value == null ? "" : value.trim();
+    }
+
+    private void validateRequired(PositionForm form) {
+        if (form.code().isBlank()) {
+            throw new BusinessException("岗位编码不能为空");
+        }
+        if (form.name().isBlank()) {
+            throw new BusinessException("岗位名称不能为空");
+        }
     }
 }

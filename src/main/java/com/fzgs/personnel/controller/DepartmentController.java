@@ -47,7 +47,7 @@ public class DepartmentController {
         try {
             service.create(form);
         } catch (BusinessException e) {
-            return fail("department/new", form, e, attrs);
+            return fail("departments/new", form, e, attrs);
         }
         return "redirect:/departments";
     }
@@ -76,17 +76,18 @@ public class DepartmentController {
         try {
             service.update(id, form);
         } catch (BusinessException e) {
-            return fail("department/" + id + "/edit", form, e, attrs);
+            return fail("departments/" + id + "/edit", form, e, attrs);
         }
         return "redirect:/departments";
     }
 
     @PostMapping("/{id}/status")
-    public String updateStatus(@PathVariable long id, @RequestParam RecordStatus status) {
+    public String updateStatus(@PathVariable long id, @RequestParam RecordStatus status,
+                               RedirectAttributes attrs) {
         try {
             service.updateStatus(id, status);
-        } catch (BusinessException ignored) {
-            return "redirect:/departments";
+        } catch (BusinessException e) {
+            attrs.addFlashAttribute("error", e.getMessage());
         }
         return "redirect:/departments";
     }

@@ -47,7 +47,7 @@ public class PositionController {
         try {
             service.create(form);
         } catch (BusinessException e) {
-            return fail("position/new", form, e, attrs);
+            return fail("positions/new", form, e, attrs);
         }
         return "redirect:/positions";
     }
@@ -76,17 +76,18 @@ public class PositionController {
         try {
             service.update(id, form);
         } catch (BusinessException e) {
-            return fail("position/" + id + "/edit", form, e, attrs);
+            return fail("positions/" + id + "/edit", form, e, attrs);
         }
         return "redirect:/positions";
     }
 
     @PostMapping("/{id}/status")
-    public String updateStatus(@PathVariable long id, @RequestParam RecordStatus status) {
+    public String updateStatus(@PathVariable long id, @RequestParam RecordStatus status,
+                               RedirectAttributes attrs) {
         try {
             service.updateStatus(id, status);
-        } catch (BusinessException ignored) {
-            return "redirect:/positions";
+        } catch (BusinessException e) {
+            attrs.addFlashAttribute("error", e.getMessage());
         }
         return "redirect:/positions";
     }

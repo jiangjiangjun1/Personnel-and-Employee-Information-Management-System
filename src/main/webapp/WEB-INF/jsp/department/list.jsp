@@ -13,10 +13,12 @@
     th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
     th { background: #f9fafb; }
     .actions a, .actions button { margin-right: 8px; }
+    .form-error { color: #b91c1c; }
   </style>
 </head>
 <body>
   <h1>部门管理</h1>
+  <c:if test="${not empty error}"><p class="form-error">${error}</p></c:if>
   <p><a href="${ctx}/departments/new">新增部门</a></p>
   <table>
     <thead>
