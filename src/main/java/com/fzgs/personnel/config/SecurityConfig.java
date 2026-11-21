@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/css/**", "/error/**").permitAll()
                         .requestMatchers("/departments/**", "/positions/**", "/users/**").hasRole("ADMIN")
                         .requestMatchers("/employees/**", "/attendance/**", "/payroll/**").hasAnyRole("ADMIN", "HR")
+                        .requestMatchers("/leave/*/approval").hasAnyRole("ADMIN", "HR")
                         .requestMatchers("/leave/**").hasAnyRole("ADMIN", "HR", "EMPLOYEE")
                         .anyRequest().authenticated())
                 .formLogin(form -> form
