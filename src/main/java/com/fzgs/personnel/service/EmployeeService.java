@@ -140,11 +140,21 @@ public class EmployeeService {
     }
 
     private void validateReferences(EmployeeForm form) {
-        if (form.departmentId() == null || departments.findById(form.departmentId()).isEmpty()) {
+        if (form.departmentId() == null) {
             throw new BusinessException("部门不存在");
         }
-        if (form.positionId() == null || positions.findById(form.positionId()).isEmpty()) {
+        Department department = departments.findById(form.departmentId())
+                .orElseThrow(() -> new BusinessException("部门不存在"));
+        if (department.status() != RecordStatus.ACTIVE) {
+            throw new BusinessException("部门已停用，不能分配给员工");
+        }
+        if (form.positionId() == null) {
             throw new BusinessException("岗位不存在");
+        }
+        Position position = positions.findById(form.positionId())
+                .orElseThrow(() -> new BusinessException("岗位不存在"));
+        if (position.status() != RecordStatus.ACTIVE) {
+            throw new BusinessException("岗位已停用，不能分配给员工");
         }
     }
 

@@ -121,6 +121,40 @@ class EmployeeServiceTest {
         assertThat(error.getMessage()).isEqualTo("部门不存在");
     }
 
+    @Test
+    void rejectsInactiveDepartment() {
+        DepartmentRepository inactive = new DepartmentRepository(null) {
+            @Override
+            public Optional<Department> findById(long id) {
+                return Optional.of(new Department(id, "HR", "人力资源部", "王经理",
+                        "13800000001", RecordStatus.INACTIVE));
+            }
+        };
+
+        BusinessException error = assertThrows(BusinessException.class,
+                () -> new EmployeeService(employees, inactive, positions)
+                        .create(form("E2026002", "李四")));
+
+        assertThat(error.getMessage()).isEqualTo("部门已停用，不能分配给员工");
+    }
+
+    @Test
+    void rejectsInactivePosition() {
+        PositionRepository inactive = new PositionRepository(null) {
+            @Override
+            public Optional<Position> findById(long id) {
+                return Optional.of(new Position(id, "QA", "测试工程师", "P4",
+                        "负责质量保障", RecordStatus.INACTIVE));
+            }
+        };
+
+        BusinessException error = assertThrows(BusinessException.class,
+                () -> new EmployeeService(employees, departments, inactive)
+                        .create(form("E2026002", "李四")));
+
+        assertThat(error.getMessage()).isEqualTo("岗位已停用，不能分配给员工");
+    }
+
     private EmployeeForm form(String employeeNo, String name) {
         return new EmployeeForm(employeeNo, name, "男", null, null, null, null,
                 LocalDate.of(2026, 11, 21), new BigDecimal("7000"),
