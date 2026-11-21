@@ -73,4 +73,33 @@ class PositionServiceTest {
 
         assertThat(error.getMessage()).isEqualTo("岗位名称不能为空");
     }
+
+    @Test
+    void updatesExistingPositionWithNormalizedCode() {
+        boolean[] updated = {false};
+        PositionRepository repository = new PositionRepository(null) {
+            @Override
+            public Optional<Position> findById(long id) {
+                return Optional.of(new Position(id, "DEV", "开发工程师", "P5",
+                        "负责业务系统开发", RecordStatus.ACTIVE));
+            }
+
+            @Override
+            public boolean existsByCode(String code, long excludedId) {
+                return false;
+            }
+
+            @Override
+            public void update(long id, PositionForm form) {
+                updated[0] = true;
+                assertThat(form.code()).isEqualTo("DEV");
+                assertThat(form.name()).isEqualTo("开发工程师");
+            }
+        };
+
+        new PositionService(repository).update(7L, new PositionForm(" dev ",
+                "开发工程师", "P5", "负责业务系统开发", RecordStatus.ACTIVE));
+
+        assertThat(updated[0]).isTrue();
+    }
 }

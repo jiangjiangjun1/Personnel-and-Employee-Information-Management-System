@@ -73,4 +73,33 @@ class DepartmentServiceTest {
 
         assertThat(error.getMessage()).isEqualTo("部门名称不能为空");
     }
+
+    @Test
+    void updatesExistingDepartmentWithNormalizedCode() {
+        boolean[] updated = {false};
+        DepartmentRepository repository = new DepartmentRepository(null) {
+            @Override
+            public Optional<Department> findById(long id) {
+                return Optional.of(new Department(id, "HR", "人力资源部", "王经理",
+                        "13800000000", RecordStatus.ACTIVE));
+            }
+
+            @Override
+            public boolean existsByCode(String code, long excludedId) {
+                return false;
+            }
+
+            @Override
+            public void update(long id, DepartmentForm form) {
+                updated[0] = true;
+                assertThat(form.code()).isEqualTo("HR");
+                assertThat(form.name()).isEqualTo("人力资源部");
+            }
+        };
+
+        new DepartmentService(repository).update(7L, new DepartmentForm(" hr ",
+                "人力资源部", "王经理", "13800000000", RecordStatus.ACTIVE));
+
+        assertThat(updated[0]).isTrue();
+    }
 }

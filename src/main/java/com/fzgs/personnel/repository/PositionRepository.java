@@ -64,7 +64,10 @@ public class PositionRepository {
             return ps;
         }, keyHolder);
         Number key = keyHolder.getKey();
-        return key == null ? 0L : key.longValue();
+        if (key == null) {
+            throw new IllegalStateException("新增岗位失败：未返回主键");
+        }
+        return key.longValue();
     }
 
     public void update(long id, PositionForm form) {
