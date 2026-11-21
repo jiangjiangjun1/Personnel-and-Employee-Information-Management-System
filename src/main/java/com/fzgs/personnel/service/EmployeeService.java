@@ -112,11 +112,21 @@ public class EmployeeService {
         if (form.employeeNo().isBlank()) {
             throw new BusinessException("工号不能为空");
         }
+        if (form.employeeNo().length() > 24) {
+            throw new BusinessException("工号长度不能超过24");
+        }
         if (form.name().isBlank()) {
             throw new BusinessException("姓名不能为空");
         }
+        if (form.name().length() > 60) {
+            throw new BusinessException("姓名长度不能超过60");
+        }
         if (form.gender().isBlank()) {
             throw new BusinessException("性别不能为空");
+        }
+        if (form.email() != null && !form.email().matches(
+                "^[\\w.%+-]+@[\\w.-]+\\.[A-Za-z]{2,}$")) {
+            throw new BusinessException("邮箱格式不正确");
         }
         if (form.hireDate() == null) {
             throw new BusinessException("入职日期不能为空");

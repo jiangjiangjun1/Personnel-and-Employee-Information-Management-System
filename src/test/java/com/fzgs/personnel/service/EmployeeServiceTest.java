@@ -91,6 +91,18 @@ class EmployeeServiceTest {
     }
 
     @Test
+    void rejectsInvalidEmail() {
+        EmployeeForm invalid = new EmployeeForm("E2026002", "李四", "男", null,
+                null, "not-an-email", null, LocalDate.of(2026, 11, 21),
+                new BigDecimal("7000"), 2L, 1L, EmployeeStatus.ACTIVE);
+
+        BusinessException error = assertThrows(BusinessException.class,
+                () -> service.create(invalid));
+
+        assertThat(error.getMessage()).isEqualTo("邮箱格式不正确");
+    }
+
+    @Test
     void rejectsMissingDepartment() {
         EmployeeForm invalid = new EmployeeForm("E2026002", "李四", "男", null,
                 null, null, null, LocalDate.of(2026, 11, 21),
