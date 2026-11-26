@@ -194,6 +194,27 @@ th {
   margin-right: 8px;
 }
 
+.actions {
+  white-space: nowrap;
+}
+
+.actions .action-form {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.actions select {
+  width: 112px;
+  min-width: 0;
+}
+
+.actions button[type="submit"] {
+  margin-top: 0;
+}
+
 .login-page {
   display: grid;
   min-height: 100vh;

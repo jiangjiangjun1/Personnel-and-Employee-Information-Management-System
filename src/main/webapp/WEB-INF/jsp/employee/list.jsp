@@ -51,7 +51,7 @@
           <td><c:out value="${e.status.name()}"/></td>
           <td class="actions">
             <a href="${ctx}/employees/${e.id}/edit">编辑</a>
-            <form class="inline" action="${ctx}/employees/${e.id}/status" method="post">
+            <form class="inline action-form" action="${ctx}/employees/${e.id}/status" method="post">
               <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
               <select name="status">
                 <c:forEach var="s" items="${statuses}">
