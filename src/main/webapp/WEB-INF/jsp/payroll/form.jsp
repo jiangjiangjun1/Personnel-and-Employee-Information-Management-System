@@ -2,26 +2,14 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>编辑工资单 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    label { display: block; margin-top: 12px; }
-    input { width: 300px; padding: 6px; }
-    .form-error { color: #b91c1c; }
-    .muted { color: #6b7280; }
-  </style>
-</head>
-<body>
-  <h1>编辑工资单</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="编辑工资单"/>
+</jsp:include>
+  <h1 class="page-title">编辑工资单</h1>
   <p class="muted">员工：<c:out value="${record.employeeNo}"/> <c:out value="${record.employeeName}"/>，月份：<c:out value="${record.payMonth}"/></p>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
 
-  <form action="${ctx}/payroll/${record.id}" method="post">
+  <form class="card page-form" action="${ctx}/payroll/${record.id}" method="post">
     <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
     <label for="baseSalary">基本工资</label>
     <input id="baseSalary" type="number" step="0.01" name="baseSalary"
@@ -41,7 +29,6 @@
     <c:url var="backUrl" value="/payroll">
       <c:param name="payMonth" value="${record.payMonth}"/>
     </c:url>
-    <p><button type="submit">保存</button> <a href="${fn:escapeXml(backUrl)}">返回</a></p>
+    <p class="form-actions"><button type="submit">保存</button> <a href="${fn:escapeXml(backUrl)}">返回</a></p>
   </form>
-</body>
-</html>
+<jsp:include page="../fragments/page-end.jsp"/>

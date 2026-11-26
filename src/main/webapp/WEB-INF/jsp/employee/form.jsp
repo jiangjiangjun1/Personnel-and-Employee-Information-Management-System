@@ -2,21 +2,10 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>员工表单 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    label { display: block; margin-top: 12px; }
-    input, select { width: 280px; padding: 6px; }
-    .form-error { color: #b91c1c; }
-  </style>
-</head>
-<body>
-  <h1>${empty id ? '新增员工' : '编辑员工'}</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="员工表单"/>
+</jsp:include>
+  <h1 class="page-title">${empty id ? '新增员工' : '编辑员工'}</h1>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
 
   <c:choose>
@@ -28,7 +17,7 @@
     </c:otherwise>
   </c:choose>
 
-  <form action="${fn:escapeXml(formAction)}" method="post">
+  <form class="card page-form" action="${fn:escapeXml(formAction)}" method="post">
     <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
     <label for="employeeNo">工号</label>
     <input id="employeeNo" name="employeeNo" value="${fn:escapeXml(form.employeeNo)}" required>
@@ -71,7 +60,6 @@
       <option value="INACTIVE" <c:if test="${form.status.name() == 'INACTIVE'}">selected</c:if>>停用</option>
       <option value="RESIGNED" <c:if test="${form.status.name() == 'RESIGNED'}">selected</c:if>>离职</option>
     </select>
-    <p><button type="submit">保存</button> <a href="${ctx}/employees">返回</a></p>
+    <p class="form-actions"><button type="submit">保存</button> <a href="${ctx}/employees">返回</a></p>
   </form>
-</body>
-</html>
+<jsp:include page="../fragments/page-end.jsp"/>

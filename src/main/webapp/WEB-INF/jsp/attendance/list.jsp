@@ -2,26 +2,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>考勤管理 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    table { border-collapse: collapse; width: 100%; background: #fff; }
-    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
-    th { background: #f9fafb; }
-    .form-error { color: #b91c1c; }
-    .muted { color: #6b7280; }
-  </style>
-</head>
-<body>
-  <h1>考勤管理</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="考勤管理"/>
+</jsp:include>
+  <h1 class="page-title">考勤管理</h1>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
 
-  <form method="get" action="${ctx}/attendance">
+  <form class="toolbar" method="get" action="${ctx}/attendance">
     <label>员工
       <select name="employeeId">
         <option value="">全部</option>
@@ -33,9 +20,10 @@
     <label>开始日期 <input type="date" name="from" value="${fn:escapeXml(from)}"></label>
     <label>结束日期 <input type="date" name="to" value="${fn:escapeXml(to)}"></label>
     <button type="submit">查询</button>
-    <a href="${ctx}/attendance/new">登记考勤</a>
+    <a class="button-link" href="${ctx}/attendance/new">登记考勤</a>
   </form>
 
+  <div class="table-wrap">
   <table>
     <thead>
       <tr>
@@ -61,6 +49,7 @@
       </c:forEach>
     </tbody>
   </table>
+  </div>
 
   <p class="muted">
     共 <c:out value="${result.total}"/> 条，第 <c:out value="${result.page}"/>/<c:out value="${result.totalPages}"/> 页
@@ -83,5 +72,4 @@
       <a href="${fn:escapeXml(nextUrl)}">下一页</a>
     </c:if>
   </p>
-</body>
-</html>
+<jsp:include page="../fragments/page-end.jsp"/>

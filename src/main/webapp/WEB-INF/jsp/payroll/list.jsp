@@ -2,38 +2,25 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>工资管理 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    table { border-collapse: collapse; width: 100%; background: #fff; }
-    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
-    th { background: #f9fafb; }
-    .form-error { color: #b91c1c; }
-    .form-success { color: #15803d; }
-    .muted { color: #6b7280; }
-  </style>
-</head>
-<body>
-  <h1>工资管理</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="工资管理"/>
+</jsp:include>
+  <h1 class="page-title">工资管理</h1>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
   <c:if test="${not empty message}"><p class="form-success"><c:out value="${message}"/></p></c:if>
 
-  <form action="${ctx}/payroll" method="get" style="display:inline">
+  <form class="toolbar" action="${ctx}/payroll" method="get">
     <label for="payMonth">工资月份</label>
     <input id="payMonth" type="month" name="payMonth" value="${fn:escapeXml(payMonth)}">
     <button type="submit">查询</button>
   </form>
-  <form action="${ctx}/payroll/generate" method="post" style="display:inline; margin-left:12px">
+  <form class="toolbar" action="${ctx}/payroll/generate" method="post">
     <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
     <input type="hidden" name="payMonth" value="${fn:escapeXml(payMonth)}">
     <button type="submit">生成当月工资单</button>
   </form>
 
+  <div class="table-wrap">
   <table>
     <thead>
       <tr>
@@ -69,6 +56,6 @@
       </c:forEach>
     </tbody>
   </table>
+  </div>
   <c:if test="${empty records}"><p class="muted">暂无工资记录</p></c:if>
-</body>
-</html>
+<jsp:include page="../fragments/page-end.jsp"/>

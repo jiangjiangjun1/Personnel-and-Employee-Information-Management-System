@@ -2,26 +2,16 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>请假管理 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    table { border-collapse: collapse; width: 100%; background: #fff; }
-    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
-    th { background: #f9fafb; }
-    .form-error { color: #b91c1c; }
-    .muted { color: #6b7280; }
-  </style>
-</head>
-<body>
-  <h1>请假管理</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="请假管理"/>
+</jsp:include>
+  <h1 class="page-title">请假管理</h1>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
-  <c:if test="${canSubmit}"><p><a href="${ctx}/leave/new">提交请假</a></p></c:if>
+  <c:if test="${canSubmit}">
+    <div class="toolbar"><a class="button-link" href="${ctx}/leave/new">提交请假</a></div>
+  </c:if>
 
+  <div class="table-wrap">
   <table>
     <thead>
       <tr>
@@ -70,6 +60,6 @@
       </c:forEach>
     </tbody>
   </table>
+  </div>
   <c:if test="${empty requests}"><p class="muted">暂无请假记录</p></c:if>
-</body>
-</html>
+<jsp:include page="../fragments/page-end.jsp"/>

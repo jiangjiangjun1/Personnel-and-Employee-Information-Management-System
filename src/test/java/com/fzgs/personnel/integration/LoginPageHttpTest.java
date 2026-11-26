@@ -43,25 +43,48 @@ class LoginPageHttpTest extends AbstractIntegrationTest {
     }
 
     @Test
-    void adminPagesRenderAsHtml() throws Exception {
+    void adminPagesRenderWithPersistentSidebar() throws Exception {
         HttpClient client = loginAsAdmin();
         for (String path : new String[]{
-                "/departments", "/positions", "/users", "/employees", "/employees/new",
-                "/attendance", "/attendance/new", "/leave", "/payroll", "/profile"
+                "/dashboard", "/departments", "/departments/new",
+                "/positions", "/positions/new", "/users", "/users/new",
+                "/employees", "/employees/new", "/attendance", "/attendance/new",
+                "/leave", "/payroll", "/profile"
         }) {
             HttpResponse<String> response = client.send(
                     get(path), HttpResponse.BodyHandlers.ofString());
             assertThat(response.statusCode()).as(path).isEqualTo(200);
-            assertThat(response.body()).as(path).contains("人事员工信息管理系统");
+            assertThat(response.body()).as(path)
+                    .contains("人事员工信息管理系统", "class=\"sidebar\"", "个人中心");
+        }
+    }
+
+    @Test
+    void employeePagesRenderWithPersistentSidebar() throws Exception {
+        HttpClient client = loginAsEmployee();
+        for (String path : new String[]{"/dashboard", "/leave", "/leave/new", "/profile"}) {
+            HttpResponse<String> response = client.send(
+                    get(path), HttpResponse.BodyHandlers.ofString());
+            assertThat(response.statusCode()).as(path).isEqualTo(200);
+            assertThat(response.body()).as(path)
+                    .contains("class=\"sidebar\"", "我的请假", "个人中心");
         }
     }
 
     private HttpClient loginAsAdmin() throws Exception {
+        return loginAs("admin");
+    }
+
+    private HttpClient loginAsEmployee() throws Exception {
+        return loginAs("employee");
+    }
+
+    private HttpClient loginAs(String username) throws Exception {
         HttpClient client = newClient();
         HttpResponse<String> loginPage = client.send(
                 get("/login"), HttpResponse.BodyHandlers.ofString());
         String csrf = extractCsrf(loginPage.body());
-        String form = "username=admin&password=123456&_csrf="
+        String form = "username=" + username + "&password=123456&_csrf="
                 + URLEncoder.encode(csrf, StandardCharsets.UTF_8);
 
         HttpRequest login = HttpRequest.newBuilder(uri("/login"))

@@ -2,25 +2,15 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>账号管理 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    table { border-collapse: collapse; width: 100%; background: #fff; }
-    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
-    th { background: #f9fafb; }
-    form.inline { display: inline; }
-    .form-error { color: #b91c1c; }
-  </style>
-</head>
-<body>
-  <h1>账号管理</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="账号管理"/>
+</jsp:include>
+  <h1 class="page-title">账号管理</h1>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
-  <p><a href="${ctx}/users/new">新增账号</a></p>
+  <div class="toolbar">
+    <a class="button-link" href="${ctx}/users/new">新增账号</a>
+  </div>
+  <div class="table-wrap">
   <table>
     <thead>
       <tr>
@@ -52,5 +42,5 @@
       </c:forEach>
     </tbody>
   </table>
-</body>
-</html>
+  </div>
+<jsp:include page="../fragments/page-end.jsp"/>

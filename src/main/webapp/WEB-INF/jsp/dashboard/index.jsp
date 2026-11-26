@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -15,22 +16,24 @@
 
     <c:if test="${!employeeView}">
       <section class="stat-grid">
-        <div class="stat">
+        <a class="stat stat-link" href="${ctx}/employees">
           <span class="stat-value"><c:out value="${summary.employeeCount}"/></span>
           <span class="stat-label">员工总数</span>
-        </div>
-        <div class="stat">
+        </a>
+        <a class="stat stat-link" href="${ctx}/employees">
           <span class="stat-value"><c:out value="${summary.activeEmployeeCount}"/></span>
           <span class="stat-label">在职员工</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value"><c:out value="${summary.departmentCount}"/></span>
-          <span class="stat-label">部门数量</span>
-        </div>
-        <div class="stat">
+        </a>
+        <c:if test="${appUser.role.name() == 'ADMIN'}">
+          <a class="stat stat-link" href="${ctx}/departments">
+            <span class="stat-value"><c:out value="${summary.departmentCount}"/></span>
+            <span class="stat-label">部门数量</span>
+          </a>
+        </c:if>
+        <a class="stat stat-link" href="${ctx}/leave">
           <span class="stat-value"><c:out value="${summary.pendingLeaveCount}"/></span>
           <span class="stat-label">待审批请假</span>
-        </div>
+        </a>
       </section>
     </c:if>
 

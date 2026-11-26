@@ -2,27 +2,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>员工档案 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    table { border-collapse: collapse; width: 100%; background: #fff; }
-    th, td { border: 1px solid #e5e7eb; padding: 8px 10px; text-align: left; }
-    th { background: #f9fafb; }
-    form.inline { display: inline; }
-    .form-error { color: #b91c1c; }
-    .muted { color: #6b7280; }
-  </style>
-</head>
-<body>
-  <h1>员工档案</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="员工档案"/>
+</jsp:include>
+  <h1 class="page-title">员工档案</h1>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
 
-  <form method="get" action="${ctx}/employees">
+  <form class="toolbar" method="get" action="${ctx}/employees">
     <label>关键字 <input type="text" name="keyword" value="${fn:escapeXml(keyword)}"></label>
     <label>部门
       <select name="departmentId">
@@ -41,9 +27,10 @@
       </select>
     </label>
     <button type="submit">查询</button>
-    <a href="${ctx}/employees/new">新增员工</a>
+    <a class="button-link" href="${ctx}/employees/new">新增员工</a>
   </form>
 
+  <div class="table-wrap">
   <table>
     <thead>
       <tr>
@@ -78,6 +65,7 @@
       </c:forEach>
     </tbody>
   </table>
+  </div>
 
   <p class="muted">
     共 <c:out value="${result.total}"/> 条，第 <c:out value="${result.page}"/>/<c:out value="${result.totalPages}"/> 页
@@ -100,5 +88,4 @@
       <a href="${fn:escapeXml(nextUrl)}">下一页</a>
     </c:if>
   </p>
-</body>
-</html>
+<jsp:include page="../fragments/page-end.jsp"/>
