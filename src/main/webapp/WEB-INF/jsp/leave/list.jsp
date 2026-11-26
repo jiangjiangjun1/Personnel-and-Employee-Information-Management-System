@@ -51,7 +51,7 @@
               <form action="${ctx}/leave/${leave.id}/approval" method="post" style="display:inline">
                 <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
                 <input type="hidden" name="approved" value="false">
-                <input type="text" name="comment" placeholder="驳回意见">
+                <input class="reject-comment" type="text" name="comment" placeholder="驳回意见">
                 <button type="submit">驳回</button>
               </form>
             </c:if>

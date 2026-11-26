@@ -215,6 +215,11 @@ th {
   margin-top: 0;
 }
 
+.reject-comment {
+  width: 140px;
+  min-width: 0;
+}
+
 .login-page {
   display: grid;
   min-height: 100vh;
