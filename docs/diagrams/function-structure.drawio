@@ -1,0 +1,222 @@
+<mxfile host="Electron">
+  <diagram id="0oN-1gxHeoD84WYlzspo" name="pageWithNumber">
+    <mxGraphModel grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="0" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="人事员工信息管理系统" mermaidId="n:ROOT" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#172033;strokeColor=#172033;fontColor=#FFFFFF;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="人事员工信息管理系统" id="2">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#172033;strokeColor=#172033;fontColor=#FFFFFF;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="220" x="807" y="38" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="账号与权限" mermaidId="n:GROUP_AUTH" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="账号与权限" id="3">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="140" x="123" y="142" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="员工信息" mermaidId="n:GROUP_EMPLOYEE" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="员工信息" id="4">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="578" y="142" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="人事业务" mermaidId="n:GROUP_HR" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="人事业务" id="5">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="1132" y="142" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="个人与系统" mermaidId="n:GROUP_SERVICE" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="个人与系统" id="6">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#E1D5E7;strokeColor=#9673A6;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="140" x="1646" y="142" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="登录与权限控制" mermaidId="n:AUTH" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="登录与权限控制" id="7">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="172" x="8" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="账号管理" mermaidId="n:ACCOUNT" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="账号管理" id="8">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="230" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="部门管理" mermaidId="n:DEPARTMENT" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="部门管理" id="9">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="404" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="岗位管理" mermaidId="n:POSITION" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="岗位管理" id="10">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="578" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="员工档案管理" mermaidId="n:EMPLOYEE" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="员工档案管理" id="11">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="156" x="752" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="考勤管理" mermaidId="n:ATTENDANCE" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="考勤管理" id="12">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="958" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="请假管理" mermaidId="n:LEAVE" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="请假管理" id="13">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="1132" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="薪资管理" mermaidId="n:PAYROLL" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="薪资管理" id="14">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="1306" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="首页统计" mermaidId="n:HOME" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="首页统计" id="15">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="1480" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="个人中心" mermaidId="n:PROFILE" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="个人中心" id="16">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="124" x="1654" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="异常与错误页面" mermaidId="n:ERROR" mermaidBaseStyle="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" mermaidBaseValue="异常与错误页面" id="17">
+          <mxCell parent="1" style="html=1;whiteSpace=wrap;strokeWidth=2;fillColor=#EEF4FF;strokeColor=#6C8EBF;fontColor=#1B1F24;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;" vertex="1">
+            <mxGeometry height="54" width="172" x="1828" y="246" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:ROOT-&gt;GROUP_AUTH#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.65;entryX=0.5;entryY=0;" mermaidBaseValue="" id="18">
+          <mxCell edge="1" parent="1" source="2" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.65;entryX=0.5;entryY=0;" target="3">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="193" y="117" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:ROOT-&gt;GROUP_EMPLOYEE#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.89;entryX=0.5;entryY=0;" mermaidBaseValue="" id="19">
+          <mxCell edge="1" parent="1" source="2" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.89;entryX=0.5;entryY=0;" target="4">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="640" y="117" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:ROOT-&gt;GROUP_HR#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.89;entryX=0.5;entryY=0;" mermaidBaseValue="" id="20">
+          <mxCell edge="1" parent="1" source="2" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.89;entryX=0.5;entryY=0;" target="5">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1194" y="117" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:ROOT-&gt;GROUP_SERVICE#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.63;entryX=0.5;entryY=0;" mermaidBaseValue="" id="21">
+          <mxCell edge="1" parent="1" source="2" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.63;entryX=0.5;entryY=0;" target="6">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1716" y="117" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_AUTH-&gt;AUTH#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.14;exitY=1;entryX=0.5;entryY=0;" mermaidBaseValue="" id="22">
+          <mxCell edge="1" parent="1" source="3" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.14;exitY=1;entryX=0.5;entryY=0;" target="7">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="94" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_AUTH-&gt;ACCOUNT#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.86;exitY=1;entryX=0.5;entryY=0;" mermaidBaseValue="" id="23">
+          <mxCell edge="1" parent="1" source="3" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.86;exitY=1;entryX=0.5;entryY=0;" target="8">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="292" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_EMPLOYEE-&gt;DEPARTMENT#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.85;entryX=0.5;entryY=0;" mermaidBaseValue="" id="24">
+          <mxCell edge="1" parent="1" source="4" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.85;entryX=0.5;entryY=0;" target="9">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="466" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_EMPLOYEE-&gt;POSITION#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" mermaidBaseValue="" id="25">
+          <mxCell edge="1" parent="1" source="4" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="10">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_EMPLOYEE-&gt;EMPLOYEE#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.81;entryX=0.5;entryY=0;" mermaidBaseValue="" id="26">
+          <mxCell edge="1" parent="1" source="4" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.81;entryX=0.5;entryY=0;" target="11">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="830" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_HR-&gt;ATTENDANCE#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.85;entryX=0.5;entryY=0;" mermaidBaseValue="" id="27">
+          <mxCell edge="1" parent="1" source="5" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.85;entryX=0.5;entryY=0;" target="12">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1020" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_HR-&gt;LEAVE#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" mermaidBaseValue="" id="28">
+          <mxCell edge="1" parent="1" source="5" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="13">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_HR-&gt;PAYROLL#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.85;entryX=0.5;entryY=0;" mermaidBaseValue="" id="29">
+          <mxCell edge="1" parent="1" source="5" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.85;entryX=0.5;entryY=0;" target="14">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1368" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_SERVICE-&gt;HOME#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.89;entryX=0.5;entryY=0;" mermaidBaseValue="" id="30">
+          <mxCell edge="1" parent="1" source="6" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0;exitY=0.89;entryX=0.5;entryY=0;" target="15">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1542" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_SERVICE-&gt;PROFILE#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" mermaidBaseValue="" id="31">
+          <mxCell edge="1" parent="1" source="6" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="16">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="" mermaidId="e:GROUP_SERVICE-&gt;ERROR#0" mermaidBaseStyle="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.83;entryX=0.5;entryY=0;" mermaidBaseValue="" id="32">
+          <mxCell edge="1" parent="1" source="6" style="curved=1;startArrow=none;endArrow=block;endSize=7;strokeColor=#8A94A6;strokeWidth=1.5;exitX=1;exitY=0.83;entryX=0.5;entryY=0;" target="17">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="1914" y="221" />
+              </Array>
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <mxCell id="33" parent="1" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=18;fontColor=light-dark(#333333,#cccccc);fontFamily=trebuchet ms,verdana,arial,sans-serif;" value="人事员工信息管理系统功能结构图" vertex="1">
+          <mxGeometry height="25" width="2000" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
