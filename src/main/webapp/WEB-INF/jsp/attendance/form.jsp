@@ -2,24 +2,13 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>登记考勤 - 人事员工信息管理系统</title>
-  <style>
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 24px; color: #1f2937; }
-    label { display: block; margin-top: 12px; }
-    input, select { width: 280px; padding: 6px; }
-    .form-error { color: #b91c1c; }
-  </style>
-</head>
-<body>
-  <h1>登记考勤</h1>
+<jsp:include page="../fragments/page-start.jsp">
+  <jsp:param name="pageTitle" value="登记考勤"/>
+</jsp:include>
+  <h1 class="page-title">登记考勤</h1>
   <c:if test="${not empty error}"><p class="form-error"><c:out value="${error}"/></p></c:if>
 
-  <form action="${ctx}/attendance" method="post">
+  <form class="card page-form" action="${ctx}/attendance" method="post">
     <input type="hidden" name="${fn:escapeXml(_csrf.parameterName)}" value="${fn:escapeXml(_csrf.token)}">
     <label for="employeeId">员工</label>
     <select id="employeeId" name="employeeId" required>
@@ -46,7 +35,6 @@
     </select>
     <label for="remark">备注</label>
     <input id="remark" name="remark" value="${fn:escapeXml(form.remark)}">
-    <p><button type="submit">保存</button> <a href="${ctx}/attendance">返回</a></p>
+    <p class="form-actions"><button type="submit">保存</button> <a href="${ctx}/attendance">返回</a></p>
   </form>
-</body>
-</html>
+<jsp:include page="../fragments/page-end.jsp"/>
